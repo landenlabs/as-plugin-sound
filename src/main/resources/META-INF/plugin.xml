@@ -1,0 +1,33 @@
+<idea-plugin>
+    <id>com.dennislang.build-sound</id>
+    <name>Build Sound Notifier</name>
+    <version>1.0.0</version>
+    <vendor url="https://github.com/dlang">Dennis Lang</vendor>
+
+    <description><![CDATA[
+        Plays a short audio tone when a project build finishes.<br/>
+        <ul>
+            <li>Ascending two-note chime on success</li>
+            <li>Descending two-note tone on failure</li>
+            <li>Configurable via <b>Settings → Tools → Build Sound</b></li>
+        </ul>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService
+                serviceImplementation="com.dennislang.buildsound.BuildSoundSettings"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="com.dennislang.buildsound.BuildSoundConfigurable"
+                id="com.dennislang.build-sound.settings"
+                displayName="Build Sound"/>
+    </extensions>
+
+    <projectListeners>
+        <listener class="com.dennislang.buildsound.BuildSoundListener"
+                  topic="com.intellij.task.ProjectTaskListener"/>
+    </projectListeners>
+</idea-plugin>
