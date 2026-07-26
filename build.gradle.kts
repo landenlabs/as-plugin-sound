@@ -13,6 +13,21 @@ repositories {
     mavenCentral()
 }
 
+// Compile-time-only stubs for com.android.tools.idea.projectsystem.* (see
+// stubs/kotlin). Android Studio's own "org.jetbrains.android" plugin supplies
+// the real classes at runtime (declared as a <depends> in plugin.xml); these
+// sources share the main compile classpath but are excluded from the built
+// jar below, so they never ship (and can't shadow the real classes at runtime).
+sourceSets {
+    main {
+        kotlin.srcDir("stubs/kotlin")
+    }
+}
+
+tasks.jar {
+    exclude("com/android/**")
+}
+
 intellij {
     version.set("2024.1")
     type.set("IC")          // IntelliJ Community; switch to "AI" to sandbox inside Android Studio

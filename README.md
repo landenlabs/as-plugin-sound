@@ -1,7 +1,7 @@
 <table border="0">
   <tr>
     <td>
-      <!-- VERSION -->v6.07.21<br>
+      <!-- VERSION -->v6.07.22<br>
       <!-- DATE -->26-Jul-2026<br>
       IntelliJ Platform Plugin (Kotlin)<br>
       <a href="https://github.com/landenlabs/as-plugin-sound">Repo</a>
@@ -72,11 +72,20 @@ as-plugin-sound/
 ├── gradle/wrapper/gradle-wrapper.properties   # Gradle 8.6
 ├── src/main/resources/META-INF/plugin.xml     # Declares plugin ID, listener registration, settings extension
 └── src/main/kotlin/com/dennislang/buildsound/
-    ├── BuildSoundSettings.kt      # Persistent app-level state (saved to build-sound.xml)
-    ├── SoundPlayer.kt             # Generates tones via javax.sound.sampled
-    ├── BuildSoundListener.kt      # Implements ProjectTaskListener.finished() — fires on every Gradle/Make build
-    └── BuildSoundConfigurable.kt  # Settings UI under Settings → Tools → Build Sound
+    ├── BuildSoundSettings.kt          # Persistent app-level state (saved to build-sound.xml)
+    ├── SoundPlayer.kt                 # Generates tones via javax.sound.sampled
+    ├── BuildSoundStartupActivity.kt   # Registers a ProjectSystemBuildManager.BuildListener —
+    │                                  # fires on every Android Studio build (Make, Run/Debug, Build APK, Rebuild)
+    └── BuildSoundConfigurable.kt      # Settings UI under Settings → Tools → Build Sound
 ```
+
+The plugin depends on `org.jetbrains.android` (bundled in Android Studio, also
+installable in IntelliJ IDEA) for `ProjectSystemBuildManager` — the platform
+API Android Studio uses to signal build completion uniformly across Make,
+Run/Debug, and Build APK. An earlier version used the generic
+`com.intellij.task.ProjectTaskListener`, which only fires for JPS "Make
+Project" style builds — not the Gradle invocations backing the Run/Debug
+green button — so it stayed silent on those builds.
 
 ---
 
@@ -130,7 +139,7 @@ Windows), run from the repo root:
 ```
 
 This updates `VERSION`, `src/main/resources/META-INF/plugin.xml`'s
-`<version>`, and the `<!-- VERSION -->v6.07.21<!-- DATE -->26-Jul-2026
+`<version>`, and the `<!-- VERSION -->v6.07.22<!-- DATE -->26-Jul-2026
 markers above, then commits, tags, and pushes.
 `build.gradle.kts`'s Gradle project `version` always reads `VERSION`
 directly, so it never needs a separate bump. Pushing the resulting `vX.Y.Z`

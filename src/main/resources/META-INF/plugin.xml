@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.dennislang.build-sound</id>
     <name>Build Sound Notifier</name>
-    <version>6.07.21</version>
+    <version>6.07.22</version>
     <vendor url="https://landenlabs.com">LanDen Labs - Dennis Lang</vendor>
 
     <description><![CDATA[
@@ -17,6 +17,7 @@
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
+    <depends>org.jetbrains.android</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService
@@ -26,10 +27,6 @@
                 instance="com.dennislang.buildsound.BuildSoundConfigurable"
                 id="com.dennislang.build-sound.settings"
                 displayName="Build Sound"/>
+        <postStartupActivity implementation="com.dennislang.buildsound.BuildSoundStartupActivity"/>
     </extensions>
-
-    <projectListeners>
-        <listener class="com.dennislang.buildsound.BuildSoundListener"
-                  topic="com.intellij.task.ProjectTaskListener"/>
-    </projectListeners>
 </idea-plugin>
