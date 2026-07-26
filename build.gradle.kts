@@ -5,7 +5,9 @@ plugins {
 }
 
 group   = "com.dennislang"
-version = "1.0.0"
+// Single source of truth is the VERSION file at repo root; set-version.bash /
+// set-version.ps1 rewrite it (and README's <!-- VERSION --> marker) together.
+version = file("VERSION").readText().trim()
 
 repositories {
     mavenCentral()
@@ -29,7 +31,7 @@ kotlin {
 tasks {
     patchPluginXml {
         sinceBuild.set("241")
-        untilBuild.set("251.*")
+        untilBuild.set("")
     }
     // instrumentCode relies on a JAR removed in IntelliJ 2024.1+; disable it.
     // (Only affects Java null-check bytecode injection — not needed for Kotlin.)

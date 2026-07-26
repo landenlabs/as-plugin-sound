@@ -2,7 +2,7 @@
     <id>com.dennislang.build-sound</id>
     <name>Build Sound Notifier</name>
     <version>1.0.0</version>
-    <vendor url="https://github.com/dlang">Dennis Lang</vendor>
+    <vendor url="https://landenlabs.com">LanDen Labs - Dennis Lang</vendor>
 
     <description><![CDATA[
         Plays a short audio tone when a project build finishes.<br/>
@@ -11,6 +11,8 @@
             <li>Descending two-note tone on failure</li>
             <li>Configurable via <b>Settings → Tools → Build Sound</b></li>
         </ul>
+        <p>Source: <a href="https://github.com/landenlabs/as-plugin-sound">github.com/landenlabs/as-plugin-sound</a></p>
+        <p>Copyright (c) 2026 LanDen Labs - Dennis Lang</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
