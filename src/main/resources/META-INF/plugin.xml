@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.dennislang.build-sound</id>
     <name>Build Sound Notifier</name>
-    <version>1.0.0</version>
+    <version>6.07.20</version>
     <vendor url="https://landenlabs.com">LanDen Labs - Dennis Lang</vendor>
 
     <description><![CDATA[

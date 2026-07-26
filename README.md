@@ -1,7 +1,7 @@
 <table border="0">
   <tr>
     <td>
-      <!-- VERSION -->v1.0.0<br>
+      <!-- VERSION -->v6.07.20<br>
       <!-- DATE -->26-Jul-2026<br>
       IntelliJ Platform Plugin (Kotlin)<br>
       <a href="https://github.com/landenlabs/as-plugin-sound">Repo</a>
@@ -130,7 +130,7 @@ Windows), run from the repo root:
 ```
 
 This updates `VERSION`, `src/main/resources/META-INF/plugin.xml`'s
-`<version>`, and the `<!-- VERSION -->v1.0.0<!-- DATE -->26-Jul-2026` README
+`<version>`, and the `<!-- VERSION -->v6.07.20<!-- DATE -->26-Jul-2026
 markers above, then commits, tags, and pushes.
 `build.gradle.kts`'s Gradle project `version` always reads `VERSION`
 directly, so it never needs a separate bump. Pushing the resulting `vX.Y.Z`
