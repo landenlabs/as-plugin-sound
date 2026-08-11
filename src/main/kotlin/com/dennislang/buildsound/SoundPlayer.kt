@@ -38,6 +38,16 @@ object SoundPlayer {
             s.volume
         )
 
+    fun playInstallSound(s: BuildSoundSettings.State) =
+        playSequence(
+            listOf(
+                s.installFreq1 to s.toneDurationMs,
+                s.installFreq2 to s.toneDurationMs,
+                s.installFreq3 to (s.toneDurationMs + 60)
+            ),
+            s.volume
+        )
+
     private fun playTone(frequency: Int, durationMs: Int, amplitude: Double) {
         try {
             val numSamples = (SAMPLE_RATE * durationMs / 1000).toInt()

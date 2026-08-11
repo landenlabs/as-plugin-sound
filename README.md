@@ -1,7 +1,7 @@
 <table border="0">
   <tr>
     <td>
-      <!-- VERSION -->v6.07.22<br>
+      <!-- VERSION -->v6.07.23<br>
       <!-- DATE -->26-Jul-2026<br>
       IntelliJ Platform Plugin (Kotlin)<br>
       <a href="https://github.com/landenlabs/as-plugin-sound">Repo</a>

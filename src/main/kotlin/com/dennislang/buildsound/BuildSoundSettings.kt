@@ -19,11 +19,16 @@ class BuildSoundSettings : PersistentStateComponent<BuildSoundSettings.State> {
         var enabled: Boolean = true,
         var playOnSuccess: Boolean = true,
         var playOnFailure: Boolean = true,
+        var playOnInstall: Boolean = true,
         // Frequencies in Hz
         var successHighFreq: Int = 880,
         var successLowFreq: Int = 659,
         var failureHighFreq: Int = 440,
         var failureLowFreq: Int = 294,
+        // Install sound: ascending three-note arpeggio, distinct from the two-note build chimes
+        var installFreq1: Int = 523,
+        var installFreq2: Int = 659,
+        var installFreq3: Int = 784,
         // Volume 0..100
         var volume: Int = 70,
         // Tone duration in ms

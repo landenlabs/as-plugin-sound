@@ -20,6 +20,7 @@ class BuildSoundConfigurable : Configurable {
     private lateinit var enabledCheck: JBCheckBox
     private lateinit var successCheck: JBCheckBox
     private lateinit var failureCheck: JBCheckBox
+    private lateinit var installCheck: JBCheckBox
     private lateinit var volumeSlider: JSlider
     private lateinit var durationSlider: JSlider
 
@@ -35,6 +36,7 @@ class BuildSoundConfigurable : Configurable {
         enabledCheck = JBCheckBox("Enable build sound notifications")
         successCheck = JBCheckBox("Play sound on build success  ✔")
         failureCheck = JBCheckBox("Play sound on build failure  ✘")
+        installCheck = JBCheckBox("Play sound when app installs on device  📲")
 
         volumeSlider = JSlider(0, 100, 70).apply {
             majorTickSpacing = 25
@@ -66,8 +68,9 @@ class BuildSoundConfigurable : Configurable {
         row(0, enabledCheck)
         row(1, successCheck)
         row(2, failureCheck)
-        row(3, JBLabel("Volume:"), volumeSlider)
-        row(4, JBLabel("Tone duration (ms):"), durationSlider)
+        row(3, installCheck)
+        row(4, JBLabel("Volume:"), volumeSlider)
+        row(5, JBLabel("Tone duration (ms):"), durationSlider)
 
         // Test buttons
         val testSuccessBtn = JButton("▶  Test success sound").apply {
@@ -76,13 +79,16 @@ class BuildSoundConfigurable : Configurable {
         val testFailureBtn = JButton("▶  Test failure sound").apply {
             addActionListener { SoundPlayer.playFailureSound(currentState()) }
         }
-        val btnPanel = JPanel().apply { add(testSuccessBtn); add(testFailureBtn) }
+        val testInstallBtn = JButton("▶  Test install sound").apply {
+            addActionListener { SoundPlayer.playInstallSound(currentState()) }
+        }
+        val btnPanel = JPanel().apply { add(testSuccessBtn); add(testFailureBtn); add(testInstallBtn) }
 
-        gbc.gridx = 0; gbc.gridy = 5; gbc.gridwidth = 2; gbc.insets = Insets(12, 8, 4, 8)
+        gbc.gridx = 0; gbc.gridy = 6; gbc.gridwidth = 2; gbc.insets = Insets(12, 8, 4, 8)
         panel.add(btnPanel, gbc)
 
         // Push everything to the top
-        gbc.gridy = 6; gbc.weighty = 1.0; gbc.fill = GridBagConstraints.VERTICAL
+        gbc.gridy = 7; gbc.weighty = 1.0; gbc.fill = GridBagConstraints.VERTICAL
         panel.add(JPanel(), gbc)
 
         reset()
@@ -102,6 +108,7 @@ class BuildSoundConfigurable : Configurable {
         return enabledCheck.isSelected != s.enabled ||
                successCheck.isSelected != s.playOnSuccess ||
                failureCheck.isSelected != s.playOnFailure ||
+               installCheck.isSelected != s.playOnInstall ||
                volumeSlider.value != s.volume ||
                durationSlider.value != s.toneDurationMs
     }
@@ -111,6 +118,7 @@ class BuildSoundConfigurable : Configurable {
         s.enabled        = enabledCheck.isSelected
         s.playOnSuccess  = successCheck.isSelected
         s.playOnFailure  = failureCheck.isSelected
+        s.playOnInstall  = installCheck.isSelected
         s.volume         = volumeSlider.value
         s.toneDurationMs = durationSlider.value
     }
@@ -120,6 +128,7 @@ class BuildSoundConfigurable : Configurable {
         enabledCheck.isSelected  = s.enabled
         successCheck.isSelected  = s.playOnSuccess
         failureCheck.isSelected  = s.playOnFailure
+        installCheck.isSelected  = s.playOnInstall
         volumeSlider.value       = s.volume
         durationSlider.value     = s.toneDurationMs
     }
