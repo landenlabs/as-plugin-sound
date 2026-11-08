@@ -37,10 +37,8 @@ intellij {
 
 kotlin {
     jvmToolchain(17)
-    // Prevent the Kotlin stdlib from being bundled — IntelliJ Platform ships its own.
-    compilerOptions {
-        freeCompilerArgs.add("-Xno-stdlib")
-    }
+    // Kotlin stdlib is kept out of the plugin zip by kotlin.stdlib.default.dependency=false
+    // in gradle.properties — IntelliJ Platform / Android Studio ships its own.
 }
 
 tasks {
@@ -51,6 +49,12 @@ tasks {
     // instrumentCode relies on a JAR removed in IntelliJ 2024.1+; disable it.
     // (Only affects Java null-check bytecode injection — not needed for Kotlin.)
     instrumentCode {
+        enabled = false
+    }
+    // The searchable-options index is built in a headless IntelliJ IC sandbox that lacks
+    // the Android plugin, so this plugin never loads there (SEVERE trace + empty jar).
+    // Disabling it removes the noise and speeds up the build.
+    buildSearchableOptions {
         enabled = false
     }
 }

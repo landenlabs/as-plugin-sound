@@ -4,16 +4,25 @@
 // ----------------------------------------------------------------------
 package com.dennislang.buildsound
 
+import com.intellij.ide.plugins.PluginManagerCore
+import com.intellij.openapi.extensions.PluginId
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.ui.DialogPanel
+import com.intellij.ui.components.BrowserLink
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBLabel
+import com.intellij.util.ui.UIUtil
 import java.awt.GridBagConstraints
 import java.awt.GridBagLayout
 import java.awt.Insets
 import javax.swing.*
 
 class BuildSoundConfigurable : Configurable {
+
+    private companion object {
+        const val PLUGIN_ID  = "com.dennislang.build-sound"   // must match <id> in plugin.xml
+        const val GITHUB_URL = "https://github.com/landenlabs/as-plugin-sound"
+    }
 
     private lateinit var panel: JPanel
 
@@ -87,8 +96,20 @@ class BuildSoundConfigurable : Configurable {
         gbc.gridx = 0; gbc.gridy = 6; gbc.gridwidth = 2; gbc.insets = Insets(12, 8, 4, 8)
         panel.add(btnPanel, gbc)
 
+        // Version (read from the installed plugin, so it is always current) and project link
+        val plugin = PluginManagerCore.getPlugin(PluginId.getId(PLUGIN_ID))
+        val versionLabel = JBLabel("${plugin?.name ?: "Build Sound"} ${plugin?.version ?: ""}".trim()).apply {
+            componentStyle = UIUtil.ComponentStyle.SMALL
+            fontColor = UIUtil.FontColor.BRIGHTER
+        }
+        gbc.gridy = 7; gbc.insets = Insets(16, 8, 0, 8)
+        panel.add(versionLabel, gbc)
+
+        gbc.gridy = 8; gbc.insets = Insets(2, 8, 4, 8)
+        panel.add(BrowserLink(GITHUB_URL, GITHUB_URL), gbc)
+
         // Push everything to the top
-        gbc.gridy = 7; gbc.weighty = 1.0; gbc.fill = GridBagConstraints.VERTICAL
+        gbc.gridy = 9; gbc.weighty = 1.0; gbc.fill = GridBagConstraints.VERTICAL
         panel.add(JPanel(), gbc)
 
         reset()

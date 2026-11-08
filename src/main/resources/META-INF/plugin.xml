@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.dennislang.build-sound</id>
     <name>All Build Sound Notifier</name>
-    <version>6.07.23</version>
+    <version>6.11.09</version>
     <vendor url="https://landenlabs.com">LanDen Labs - Dennis Lang</vendor>
 
     <description><![CDATA[
@@ -10,7 +10,7 @@
             <li>Ascending two-note chime on success</li>
             <li>Descending two-note tone on failure</li>
             <li>Ascending three-note chime when the app finishes installing/launching on a device</li>
-            <li>Configurable via <b>Settings → Tools → Build Sound</b></li>
+            <li>Configurable via <b>Tools → Build Sound Settings…</b> or <b>Settings → Tools → Build Sound</b></li>
         </ul>
         <p>Source: <a href="https://github.com/landenlabs/as-plugin-sound">github.com/landenlabs/as-plugin-sound</a></p>
         <p>Copyright (c) 2026 LanDen Labs - Dennis Lang</p>
@@ -29,7 +29,17 @@
                 id="com.dennislang.build-sound.settings"
                 displayName="Build Sound"/>
         <postStartupActivity implementation="com.dennislang.buildsound.BuildSoundStartupActivity"/>
+        <notificationGroup id="Build Sound" displayType="BALLOON"/>
     </extensions>
+
+    <actions>
+        <action id="com.dennislang.buildsound.OpenSettings"
+                class="com.dennislang.buildsound.OpenBuildSoundSettingsAction"
+                text="Build Sound Settings…"
+                description="Open Settings → Tools → Build Sound">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
 
     <projectListeners>
         <listener class="com.dennislang.buildsound.RunSoundListener"

@@ -1,8 +1,8 @@
 <table border="0">
   <tr>
     <td>
-      <!-- VERSION -->v6.07.23<br>
-      <!-- DATE -->26-Jul-2026<br>
+      <!-- VERSION -->v6.11.09<br>
+      <!-- DATE -->08-Nov-2026<br>
       IntelliJ Platform Plugin (Kotlin)<br>
       <a href="https://github.com/landenlabs/as-plugin-sound">Repo</a>
     </td>
@@ -54,7 +54,9 @@ Official release notes: [developer.android.com/studio/releases](https://develope
 
 ## Settings
 
-Open **Settings → Tools → Build Sound** to configure:
+Open **Tools → Build Sound Settings…** (or **Settings → Tools → Build Sound**, or type
+"Build Sound" in Find Action ⌘⇧A / Ctrl+Shift+A) to configure. After the plugin is
+installed or updated, a one-time notification also offers an **Open Settings** link.
 
 - Enable/disable toggle
 - Separate success / failure toggles
@@ -76,7 +78,9 @@ as-plugin-sound/
     ├── SoundPlayer.kt                 # Generates tones via javax.sound.sampled
     ├── BuildSoundStartupActivity.kt   # Registers a ProjectSystemBuildManager.BuildListener —
     │                                  # fires on every Android Studio build (Make, Run/Debug, Build APK, Rebuild)
-    └── BuildSoundConfigurable.kt      # Settings UI under Settings → Tools → Build Sound
+    ├── BuildSoundConfigurable.kt      # Settings UI under Settings → Tools → Build Sound
+    ├── OpenBuildSoundSettingsAction.kt # Tools → Build Sound Settings… menu action
+    └── WelcomeNotifier.kt             # One-time "installed/updated" balloon with Open Settings link
 ```
 
 The plugin depends on `org.jetbrains.android` (bundled in Android Studio, also
@@ -139,7 +143,7 @@ Windows), run from the repo root:
 ```
 
 This updates `VERSION`, `src/main/resources/META-INF/plugin.xml`'s
-`<version>`, and the `<!-- VERSION -->v6.07.22<!-- DATE -->26-Jul-2026
+`<version>`, and the `<!-- VERSION -->v6.07.22<!-- DATE -->26-Jul-2026`
 markers above, then commits, tags, and pushes.
 `build.gradle.kts`'s Gradle project `version` always reads `VERSION`
 directly, so it never needs a separate bump. Pushing the resulting `vX.Y.Z`
@@ -149,6 +153,20 @@ isn't published to the JetBrains Marketplace by this workflow.
 
 ---
 
-## License
+### License
 
-Apache 2.0 © [LanDen Labs](https://github.com/landenlabs) 2026
+```
+Copyright 2026 Dennis Lang (LanDen Labs)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+See [LICENSE](LICENSE) for the full license text.

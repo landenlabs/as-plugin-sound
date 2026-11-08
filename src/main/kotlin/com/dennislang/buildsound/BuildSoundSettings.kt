@@ -32,7 +32,9 @@ class BuildSoundSettings : PersistentStateComponent<BuildSoundSettings.State> {
         // Volume 0..100
         var volume: Int = 70,
         // Tone duration in ms
-        var toneDurationMs: Int = 180
+        var toneDurationMs: Int = 180,
+        // Plugin version the install/update welcome notification was last shown for
+        var lastNotifiedVersion: String = ""
     )
 
     private var state = State()

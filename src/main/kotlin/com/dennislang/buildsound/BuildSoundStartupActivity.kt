@@ -19,6 +19,9 @@ import com.intellij.openapi.startup.ProjectActivity
 class BuildSoundStartupActivity : ProjectActivity {
 
     override suspend fun execute(project: Project) {
+        // Never let the welcome balloon stop the build listener from registering.
+        runCatching { WelcomeNotifier.showIfNewVersion(project) }
+
         val buildManager = ProjectSystemService.getInstance(project).getProjectSystem().getBuildManager()
         buildManager.addBuildListener(project, object : ProjectSystemBuildManager.BuildListener {
             override fun buildCompleted(result: ProjectSystemBuildManager.BuildResult) {
