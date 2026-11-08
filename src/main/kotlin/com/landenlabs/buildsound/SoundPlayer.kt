@@ -2,7 +2,7 @@
 // Copyright (c) 2026 LanDen Labs - Dennis Lang
 // https://landenlabs.com
 // ----------------------------------------------------------------------
-package com.dennislang.buildsound
+package com.landenlabs.buildsound
 
 import javax.sound.sampled.*
 import java.io.ByteArrayInputStream

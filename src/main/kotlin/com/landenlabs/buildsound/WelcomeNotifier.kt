@@ -2,7 +2,7 @@
 // Copyright (c) 2026 LanDen Labs - Dennis Lang
 // https://landenlabs.com
 // ----------------------------------------------------------------------
-package com.dennislang.buildsound
+package com.landenlabs.buildsound
 
 import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.notification.NotificationAction
@@ -17,7 +17,7 @@ import com.intellij.openapi.project.Project
  */
 object WelcomeNotifier {
 
-    private const val PLUGIN_ID = "com.dennislang.build-sound"    // must match <id> in plugin.xml
+    private const val PLUGIN_ID = "com.landenlabs.build-sound"    // must match <id> in plugin.xml
     private const val GROUP_ID  = "Build Sound"                   // must match <notificationGroup id> in plugin.xml
 
     fun showIfNewVersion(project: Project) {

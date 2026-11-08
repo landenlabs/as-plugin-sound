@@ -73,7 +73,7 @@ as-plugin-sound/
 ├── build.gradle.kts                          # Gradle build targeting IntelliJ 2024.1 / JVM 17
 ├── gradle/wrapper/gradle-wrapper.properties   # Gradle 8.6
 ├── src/main/resources/META-INF/plugin.xml     # Declares plugin ID, listener registration, settings extension
-└── src/main/kotlin/com/dennislang/buildsound/
+└── src/main/kotlin/com/landenlabs/buildsound/
     ├── BuildSoundSettings.kt          # Persistent app-level state (saved to build-sound.xml)
     ├── SoundPlayer.kt                 # Generates tones via javax.sound.sampled
     ├── BuildSoundStartupActivity.kt   # Registers a ProjectSystemBuildManager.BuildListener —

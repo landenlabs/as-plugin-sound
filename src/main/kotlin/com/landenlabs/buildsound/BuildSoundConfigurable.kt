@@ -2,7 +2,7 @@
 // Copyright (c) 2026 LanDen Labs - Dennis Lang
 // https://landenlabs.com
 // ----------------------------------------------------------------------
-package com.dennislang.buildsound
+package com.landenlabs.buildsound
 
 import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.openapi.extensions.PluginId
@@ -20,7 +20,7 @@ import javax.swing.*
 class BuildSoundConfigurable : Configurable {
 
     private companion object {
-        const val PLUGIN_ID  = "com.dennislang.build-sound"   // must match <id> in plugin.xml
+        const val PLUGIN_ID  = "com.landenlabs.build-sound"   // must match <id> in plugin.xml
         const val GITHUB_URL = "https://github.com/landenlabs/as-plugin-sound"
     }
 

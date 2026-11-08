@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.intellij") version "1.17.4"
 }
 
-group   = "com.dennislang"
+group   = "com.landenlabs"
 // Single source of truth is the VERSION file at repo root; set-version.bash /
 // set-version.ps1 rewrite it (and README's <!-- VERSION --> marker) together.
 version = file("VERSION").readText().trim()

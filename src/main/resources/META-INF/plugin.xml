@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>com.dennislang.build-sound</id>
+    <id>com.landenlabs.build-sound</id>
     <name>All Build Sound Notifier</name>
     <version>6.11.09</version>
     <vendor url="https://landenlabs.com">LanDen Labs - Dennis Lang</vendor>
@@ -22,19 +22,19 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService
-                serviceImplementation="com.dennislang.buildsound.BuildSoundSettings"/>
+                serviceImplementation="com.landenlabs.buildsound.BuildSoundSettings"/>
         <applicationConfigurable
                 parentId="tools"
-                instance="com.dennislang.buildsound.BuildSoundConfigurable"
-                id="com.dennislang.build-sound.settings"
+                instance="com.landenlabs.buildsound.BuildSoundConfigurable"
+                id="com.landenlabs.build-sound.settings"
                 displayName="Build Sound"/>
-        <postStartupActivity implementation="com.dennislang.buildsound.BuildSoundStartupActivity"/>
+        <postStartupActivity implementation="com.landenlabs.buildsound.BuildSoundStartupActivity"/>
         <notificationGroup id="Build Sound" displayType="BALLOON"/>
     </extensions>
 
     <actions>
-        <action id="com.dennislang.buildsound.OpenSettings"
-                class="com.dennislang.buildsound.OpenBuildSoundSettingsAction"
+        <action id="com.landenlabs.buildsound.OpenSettings"
+                class="com.landenlabs.buildsound.OpenBuildSoundSettingsAction"
                 text="Build Sound Settings…"
                 description="Open Settings → Tools → Build Sound">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
@@ -42,7 +42,7 @@
     </actions>
 
     <projectListeners>
-        <listener class="com.dennislang.buildsound.RunSoundListener"
+        <listener class="com.landenlabs.buildsound.RunSoundListener"
                   topic="com.intellij.execution.ExecutionListener"/>
     </projectListeners>
 </idea-plugin>
